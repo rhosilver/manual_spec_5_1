@@ -2,9 +2,9 @@ describe("Camera API Manual Tests", function(){
 	var enumData = Rho.Camera.enumerate();
 	var cam;
 	if(enumData.length == 2){
-		cam = enumData[1].getProperty('cameraType');
+		cam = enumData[1].cameraType;
 	}else{
-		cam = enumData[0].getProperty('cameraType');
+		cam = enumData[0].cameraType;
 	}
 	var imagestatus = '';
 	var callbackData;
@@ -293,8 +293,9 @@ describe("Camera API Manual Tests", function(){
 					});
 				});
 
+				//After discussing on SR EMBPD00169387, decided as invalid usecase and removing the test case
 				if(!isApplePlatform()){
-					it("VT285-0037 | Should rotate the screen rightHanded after calling takePicture() method. | using " + camtype , function(){
+					xit("VT285-0037 | Should rotate the screen rightHanded after calling takePicture() method. | using " + camtype , function(){
 						var spec = new ManualSpec(jasmine, window.document);
 			        	spec.addGoal(jasmine.getEnv().currentSpec.description);
 			            spec.addStep("Press 'RunTest' button");

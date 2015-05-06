@@ -2,9 +2,9 @@ describe("Camera API Manual Tests", function(){
 	var enumData = Rho.Camera.enumerate();
 	var cam;
 	if(enumData.length == 2){
-		cam = enumData[0].getProperty('cameraType');
+		cam = enumData[0].cameraType;
 	}else{
-		cam = enumData[0].getProperty('cameraType');
+		cam = enumData[0].cameraType;
 		if(cam == 'front' || cam == 'imager'){
 			cam = '';
 		}
@@ -299,8 +299,9 @@ describe("Camera API Manual Tests", function(){
 					});
 				});
 
+				//After discussing on SR EMBPD00169387, decided as invalid usecase and removing the test case
 				if(!isApplePlatform()){
-					it("VT285-0037 | Should rotate the screen rightHanded after calling takePicture() method. | using " + camtype , function(){
+					xit("VT285-0037 | Should rotate the screen rightHanded after calling takePicture() method. | using " + camtype , function(){
 						var spec = new ManualSpec(jasmine, window.document);
 			        	spec.addGoal(jasmine.getEnv().currentSpec.description);
 			            spec.addStep("Press 'RunTest' button");
@@ -387,7 +388,7 @@ describe("Camera API Manual Tests", function(){
 			            spec.displayScenario();
 			            spec.waitForButtonPressing("Run test");
 						runs(function(){
-							Ruby.call('Cameratest','take_picture?'+camtype+'&flashMode=redEye&outputFormat=dataUri');
+							Ruby.call('Cameratest','take_picture?'+camtype+'&flashMode=redEye');
 			                spec.waitForResponse();
 						});			
 					});
@@ -604,7 +605,7 @@ describe("Camera API Manual Tests", function(){
 					    spec.displayScenario();
 					    spec.waitForButtonPressing("Run test");
 						runs(function(){
-							Ruby.call('Cameratest','take_picture?'+camtype+'&colorModel=grayscale&outputFormat=dataUri');
+							Ruby.call('Cameratest','take_picture?'+camtype+'&colorModel=grayscale');
 					        spec.waitForResponse();
 						});					
 					});
